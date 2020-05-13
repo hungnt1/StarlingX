@@ -7,7 +7,7 @@
     <partition>/machine</partition>
   </resource>
   <os>
-    <type arch='x86_64' machine='pc-q35-xenial'>hvm</type>
+    <type arch='x86_64'>hvm</type>
   </os>
   <features>
     <acpi/>
@@ -25,7 +25,7 @@
   <on_reboot>restart</on_reboot>
   <on_crash>destroy</on_crash>
   <devices>
-    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <emulator>/usr/libexec/qemu-kvm</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
       <source file='DISK0'/>
@@ -95,9 +95,5 @@
       <alias name='balloon0'/>
     </memballoon>
   </devices>
-  <seclabel type='dynamic' model='apparmor' relabel='yes'>
-    <label>libvirt-6afab2ba-0ed0-45cb-b1bd-985e211a48de</label>
-    <imagelabel>libvirt-6afab2ba-0ed0-45cb-b1bd-985e211a48de</imagelabel>
-  </seclabel>
 </domain>
 

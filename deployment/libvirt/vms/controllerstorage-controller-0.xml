@@ -1,5 +1,5 @@
-<domain type='kvm' id='187'>
-  <name>NAME</name>
+<domain type='kvm' id='164'>
+  <name>controllerstorage-controller-0</name>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
   <vcpu placement='static'>4</vcpu>
@@ -17,7 +17,7 @@
   <cpu match='exact'>
     <model fallback='forbid'>Nehalem</model>
     <topology sockets='1' cores='4' threads='1'/>
-    <feature policy='require' name='vmx'/>
+    <feature policy='optional' name='vmx'/>
     <feature policy='optional' name='svm'/>
   </cpu>
   <clock offset='utc'/>
@@ -28,55 +28,63 @@
     <emulator>/usr/libexec/qemu-kvm</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='DISK0'/>
+      <source file='/var/lib/libvirt/images/controllerstorage-controller-0-0.img'/>
       <backingStore/>
       <target dev='sda' bus='sata'/>
       <boot order='1'/>
     </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='DISK1'/>
+      <source file='/var/lib/libvirt/images/controllerstorage-controller-0-1.img'/>
       <backingStore/>
       <target dev='sdb' bus='sata'/>
     </disk>
+    <disk type='file' device='cdrom'>
+      <driver name='qemu' type='raw'/>
+      <source file='/root/starlingx/tools/deployment/libvirt/boot.iso'/>
+      <backingStore/>
+      <target dev='sdc' bus='sata'/>
+      <readonly/>
+      <boot order='2'/>
+    </disk>
     <interface type='bridge'>
-      <source bridge='%BR1%'/>
-      <target dev='vnet8'/>
+      <source bridge='stxbr1'/>
+      <target dev='vnet0'/>
       <model type='e1000'/>
       <alias name='net0'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR2%'/>
-      <target dev='vnet9'/>
+      <source bridge='stxbr2'/>
+      <target dev='vnet1'/>
       <model type='e1000'/>
-      <boot order='2'/>
+      <boot order='3'/>
       <alias name='net1'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR3%'/>
-      <target dev='vnet10'/>
+      <source bridge='stxbr3'/>
+      <target dev='vnet2'/>
       <model type='virtio'/>
       <alias name='net2'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR4%'/>
-      <target dev='vnet11'/>
+      <source bridge='stxbr4'/>
+      <target dev='vnet3'/>
       <model type='virtio'/>
       <alias name='net3'/>
     </interface>
     <serial type='pty'>
-      <source path='/dev/pts/12'/>
+      <source path='/dev/pts/8'/>
       <target port='0'/>
       <alias name='serial0'/>
     </serial>
-    <console type='pty' tty='/dev/pts/12'>
-      <source path='/dev/pts/12'/>
+    <console type='pty' tty='/dev/pts/8'>
+      <source path='/dev/pts/8'/>
       <target type='serial' port='0'/>
       <alias name='serial0'/>
     </console>
     <input type='mouse' bus='ps2'/>
     <input type='keyboard' bus='ps2'/>
-    <graphics type='vnc' port='5903' autoport='yes' listen='127.0.0.1' keymap='en-us'>
+    <graphics type='vnc' port='5900' autoport='yes' listen='127.0.0.1' keymap='en-us'>
       <listen type='address' address='127.0.0.1'/>
     </graphics>
     <video>
@@ -88,3 +96,4 @@
     </memballoon>
   </devices>
 </domain>
+

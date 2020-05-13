@@ -18,11 +18,7 @@ usage_destroy() {
 }
 
 iso_image_check() {
-    local ISOIMAGE=$1
-    if ! file ${ISOIMAGE} | grep "DOS/MBR" > /dev/null; then
-        echo "$ISOIMAGE is not an ISO type"
-        exit -1
-    fi
+   echo  "skip check"
 }
 
 configuration_check() {

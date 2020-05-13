@@ -1,5 +1,5 @@
 <domain type='kvm' id='187'>
-  <name>NAME</name>
+  <name>controllerstorage-worker-0</name>
   <memory unit='KiB'>16777216</memory>
   <currentMemory unit='KiB'>16777216</currentMemory>
   <vcpu placement='static'>4</vcpu>
@@ -28,38 +28,38 @@
     <emulator>/usr/libexec/qemu-kvm</emulator>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='DISK0'/>
+      <source file='/var/lib/libvirt/images/controllerstorage-worker-0-0.img'/>
       <backingStore/>
       <target dev='sda' bus='sata'/>
       <boot order='1'/>
     </disk>
     <disk type='file' device='disk'>
       <driver name='qemu' type='qcow2'/>
-      <source file='DISK1'/>
+      <source file='/var/lib/libvirt/images/controllerstorage-worker-0-1.img'/>
       <backingStore/>
       <target dev='sdb' bus='sata'/>
     </disk>
     <interface type='bridge'>
-      <source bridge='%BR1%'/>
+      <source bridge='stxbr1'/>
       <target dev='vnet8'/>
       <model type='e1000'/>
       <alias name='net0'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR2%'/>
+      <source bridge='stxbr2'/>
       <target dev='vnet9'/>
       <model type='e1000'/>
       <boot order='2'/>
       <alias name='net1'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR3%'/>
+      <source bridge='stxbr3'/>
       <target dev='vnet10'/>
       <model type='virtio'/>
       <alias name='net2'/>
     </interface>
     <interface type='bridge'>
-      <source bridge='%BR4%'/>
+      <source bridge='stxbr4'/>
       <target dev='vnet11'/>
       <model type='virtio'/>
       <alias name='net3'/>
